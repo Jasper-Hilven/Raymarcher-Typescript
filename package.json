@@ -1,0 +1,31 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "t.js",
+  "scripts": {
+    "start": "webpack-dev-server --host 0.0.0.0  --content-base build/",
+    "build": "webpack",
+    "install_all": "npm install && typings install",
+    "clean": "rimraf node_modules/ && rimraf typings/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "2.1.1",
+    "css-loader": "^0.23.1",
+    "html-webpack-plugin": "^2.22.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "rimraf": "^2.5.4",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^2.0.6",
+    "typings": "^1.5.0",
+    "webpack": "^1.13.1",
+    "webpack-dashboard": "0.0.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
