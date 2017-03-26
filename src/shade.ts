@@ -14,7 +14,7 @@ export const shade = (position: IVector3,form:Form, lightPosition: IVector3) => 
     let lightDir = lightPosition.Subtract(position).Normalize();
     let dot = calculateNormal(position, form.dist).Dot(lightDir);
     let diffuse = form.color(position);
-    let light = Math.max(dot, 0.18);
+    let light = Math.max(dot, .2);
     return diffuse.Mult(light);
     //return lightDir;
 }

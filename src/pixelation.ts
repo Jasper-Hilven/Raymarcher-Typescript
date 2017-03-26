@@ -23,17 +23,38 @@ const pixelColorOptions =
         new vectorC(.8, .8, .8),
         new vectorC(.9, .9, .9),
         new vectorC(1, 1, 1),
-        new vectorC(1, 0, 0),
-        new vectorC(0, 1, 0),
-        new vectorC(.3, 0, 0),
-        new vectorC(0, .3, 0),
-        new vectorC(.5, 0, 0),
-        new vectorC(.5, .5, 0),
-        new vectorC(0, .5, 0),
-        new vectorC(0, 0, 1),
     ];
+function rgba(x: number, y: number, z: number, a: number) { return vector(x, y, z).Mult(1 / 256) };
+const palette = [
+    rgba(88, 105, 148, 1),
+    rgba(125, 134, 156, 1),
+    rgba(162, 171, 171, 1),
+    rgba(180, 196, 174, 1),
+    rgba(229, 232, 182, 1),
+
+    rgba(6, 81, 67, 1),
+    rgba(125, 134, 156, 1),
+    rgba(18, 148, 144, 1),
+    rgba(224, 168, 144, 1),
+    rgba(206, 20, 131, 1),
+    
+    rgba(128, 0, 0, 1),
+    rgba(0, 128, 0, 1),
+    rgba(0, 0, 128, 1),
+    
+    rgba(128, 64, 64, 1),
+    rgba(64, 128, 64, 1),
+    rgba(64, 64, 128, 1),
+
+    rgba(96, 64, 64, 1),
+    rgba(64, 96, 64, 1),
+    rgba(64, 64, 96, 1),
+    
+    
+    ]
+
 export function PixelateDrawing(pixels: IVector3[][]) {
-    let colorPalette = pixelColorOptions;
+    let colorPalette = pixelColorOptions.concat(palette);
     let ret = [];
     let rem = new vectorC(0, 0, 0);
     for (let i = 0; i < pixels.length; i++) {
@@ -49,4 +70,3 @@ export function PixelateDrawing(pixels: IVector3[][]) {
     }
     return ret;
 }
-console.log("Calculated ballscreen")
