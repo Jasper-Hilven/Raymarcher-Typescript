@@ -14,6 +14,7 @@ export interface IVector3 {
     Normalize: () => IVector3
     Dot: (other: IVector3) => number
     ToString: () => string
+    RotateY: (ang: number) => IVector3
 }
 //: ()=>IVector3 
 export const vectorC = function (x, y, z) {
@@ -35,6 +36,11 @@ export const vectorC = function (x, y, z) {
     this.ZeroMax = () => vector(Math.max(this.X, 0), Math.max(this.Y, 0), Math.max(this.Z, 0));
     this.MaxCoord = () => Math.max(this.X, this.Y, this.Z);
     this.Dot = (other: IVector3) => this.X * other.X + this.Y * other.Y + this.Z * other.Z;
-    this.ToString = () => "(" + x + ", " + y + ", " + z + ")"
+    this.ToString = () => "(" + x + ", " + y + ", " + z + ")";
+    this.RotateY = (ang: number) => {
+        let cos = Math.cos(ang);
+        let sin = Math.sin(ang);
+        return vector(cos * this.X + sin * this.Z, this.Y, cos * this.Z - sin * this.X)
+    }
 };
 export const vector = (x: number, y: number, z: number): IVector3 => new vectorC(x, y, z);

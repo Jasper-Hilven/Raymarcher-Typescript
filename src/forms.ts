@@ -30,7 +30,8 @@ function displaceSD(first: (position: IVector3) => number) {
     return (position: IVector3) =>
         first(position.Add((new vectorC(Math.sin(3 * position.X), Math.sin(3 * position.Y), Math.sin(3 * position.Z))).Mult(.05)));
 }
-const SubtractionD = (first: (position: IVector3) => number, second: (position: IVector3) => number) => (position: IVector3) => Math.max(first(position),- second(position));
+const SubtractionD = (first: (position: IVector3) => number, second: (position: IVector3) => number) => (position: IVector3) => Math.max(first(position), - second(position));
+const RotateYD = (first: (position: IVector3) => number, rot: number) => (position: IVector3) => first(position.RotateY(-rot));
 
 export type Form = { dist: (position: IVector3) => number, color: (position: IVector3) => IVector3 };
 export const Sphere = (size: number, color: IVector3) => (<Form>{ dist: SphereD(size), color: (p: IVector3) => color });
@@ -46,3 +47,4 @@ export const UnionSm = (first: Form, second: Form, smoothie: number) => (<Form>
 export const Intersection = (first: Form, second: Form) => (<Form>{ dist: IntersectionD(first.dist, second.dist), color: (p: IVector3) => first.dist(p) > second.dist(p) ? second.color(p) : first.color(p) });
 export const Subtraction = (first: Form, second: Form) => (<Form>{ dist: SubtractionD(first.dist, second.dist), color: first.color });
 export const translation = (first: Form, ts: IVector3) => (<Form>{ dist: (position: IVector3) => first.dist(position.Subtract(ts)), color: first.color });
+export const rotateY = (first: Form, rotation: number) => (<Form>{ dist: RotateYD(first.dist, rotation), color: first.color })
